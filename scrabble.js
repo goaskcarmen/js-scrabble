@@ -135,9 +135,8 @@ Player.prototype.plays = function(){
 };
 
 Player.prototype.play = function(word){
-  this.arrayOfWords += word;
-
-  return false;
+  this.arrayOfWords.push(word);
+  if (this.hasWon()) { return false; }
 };
 
 Player.prototype.totalScore = function(){
@@ -159,10 +158,20 @@ Player.prototype.highestScoringWord = function () {
 };
 
 Player.prototype.highestWordScore = function(){
-  return score(this.highestScoringWord);
+  return score(this.highestScoringWord());
 };
 
 
 ///////////////// main ////////////////
 //console.log(score("aek"));
-console.log(highestScoreFrom(["cat", "dog", "a"]));
+// console.log(highestScoreFrom(["cat", "dog", "a"]));
+
+var player1 = new Player("Carmen");
+player1.play("cat");
+player1.play("dog");
+player1.play("monkey");
+console.log(player1.plays());
+console.log(player1.totalScore());
+console.log(player1.hasWon());
+console.log(player1.highestScoringWord());
+console.log(player1.highestWordScore());
